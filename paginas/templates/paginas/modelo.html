@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,9 +11,11 @@
 </head>
   <body>
       <header>
-          <nav class="nav-list">
-              <a href="logo" class="href">PyDjango</a>
-              <ul>
+          <nav id="nav-list">
+              <a href="#" class="href">PyDjango</a>
+              <button id="btn-mobile">MENU</button>
+
+              <ul id="menu">
                   <li><a href="/">Início</a></li>
                   <li><a href="/">Sobre</a></li>
                   <li><a href="/">Projetos</a></li>
@@ -22,5 +23,7 @@
               </ul>
           </nav>
       </header>
+      <main></main>
+      <script src="{% static 'js/modelo.js' %}"></script>
   </body>
 </html>
