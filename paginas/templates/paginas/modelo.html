@@ -11,21 +11,31 @@
 </head>
   <body>
       <header>
+        {% block menu %}
           <nav id="nav-list">
-              <a href="#" class="href" >PyDjango</a>
+              <a href="{% url 'home' %}" class="href" >PyDjango</a>
               <button id="btn-mobile" aria-label="Abrir Menu" aria-haspopup="true" aria-controls="menu" aria-expanded="false">Menu
                 <span id="hamburguer"></span>
               </button>
 
               <ul id="menu" role="menu">
-                  <li><a href="/">Início</a></li>
-                  <li><a href="/">Sobre</a></li>
+                  <li><a href="{% url 'home' %}">Início</a></li>
+                  <li><a href="{% url 'sobre' %}">Sobre</a></li>
                   <li><a href="/">Projetos</a></li>
                   <li><a href="/">Contato</a></li>
               </ul>
           </nav>
-      </header>
-      <main></main>
+        {% endblock %}
+      </header>     
+
+      <main>
+        {% block conteudo %}
+          <div>
+            <h3>Template Modelo</h3>
+
+          </div>
+        {% endblock %}
+      </main>
 
       <footer id="rodape">
         <a href="/">by Ebenézer Cavalcante</a>      
