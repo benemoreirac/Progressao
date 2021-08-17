@@ -1,0 +1,22 @@
+{% extends 'paginas/modelo.html'%}
+{% load static %}
+
+{% block conteudo%}
+<h3>Excluir Registros</h3>
+<p class="load">
+    Confirme os campos para excluir!
+</p>
+
+<form action="" method="POST">
+    <p>
+        Deseja excluir o registro: <b>{{object}}</b>?
+    </p>
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-danger">Excluir</button>
+
+</form>
+
+{% endblock%}
