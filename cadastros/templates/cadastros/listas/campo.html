@@ -1,0 +1,32 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block conteudo %}
+<h3>Lista de Campos Registrados</h3>
+<hr>
+
+<div class="">
+    <table class="">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Opções</th>
+        </tr>
+        {% for campo in object_list %}
+        <tr>
+            <td>{{campo.nome}}</td>
+            <td>{{campo.descricao}}</td>
+            <td>
+                <a href="{% url 'editar-campo' campo.pk %}" style="color:rgb(8, 170, 62)" title="Editar">Editar</a>
+                <a href="{% url 'excluir-campo' campo.pk  %}" style="color:rgb(250, 8, 8)"  title="Excluir">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum campo Registrado</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

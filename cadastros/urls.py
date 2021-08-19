@@ -1,8 +1,9 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern
-from .views import CampoCreate, AtividadeCreate, CampusCreate, ClassesCreate, StatusCreate
+from .views import AtividadeList, CampoCreate, AtividadeCreate, CampoList, CampusCreate, ClassesCreate, StatusCreate
 from .views import CampoUpdate, AtividadeUpdate, StatusUpdate, ClassesUpdate, CampusUpdate
 from .views import CampoDelete, AtividadeDelete, StatusDelete, ClassesDelete, CampusDelete
+from .views import CampoList, AtividadeList
 
 urlpatterns = [
     path('cadastrar/campo/', CampoCreate.as_view(), name='cadastrar-campo'),
@@ -22,4 +23,8 @@ urlpatterns = [
     path('excluir/status/<int:pk>/', StatusDelete.as_view(), name='excluir-status'),
     path('excluir/classe/<int:pk>/', ClassesDelete.as_view(), name='excluir-classe'),
     path('excluir/campus/<int:pk>/', CampusDelete.as_view(), name='excluir-campus'),
+
+    path('listar/campos/', CampoList.as_view(), name='listar-campo'),
+    path('listar/atividades/', CampoList.as_view(), name='listar-atividades'),
+
 ]

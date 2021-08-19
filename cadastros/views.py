@@ -1,6 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Campo, Atividade, Status, Classe, Campus
 from django.urls import reverse_lazy
+from django.views.generic.list import ListView 
 
 # Create your views here.
 class StatusCreate(CreateView):
@@ -25,7 +26,7 @@ class CampoCreate(CreateView):
     model = Campo
     fields = ['nome','descricao']
     template_name ='cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-campo')
 
 class AtividadeCreate(CreateView):
     model = Atividade
@@ -40,13 +41,13 @@ class CampoUpdate(UpdateView):
     model = Campo
     fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-campo')
 
 class AtividadeUpdate(UpdateView):
     model = Atividade
     fields = ['numero', 'descricao', 'detalhes', 'campo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-atividade')
 
 class StatusUpdate(UpdateView):
     model = Status
@@ -93,3 +94,14 @@ class ClassesDelete(DeleteView):
     model = Classe
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('home')
+
+
+###### LIST ######
+
+class CampoList(ListView):
+    model = Campo
+    template_name = 'cadastros/listas/campo.html'
+
+class AtividadeList(ListView):
+    model = Atividade
+    template_name = 'cadastros/listas/atividade.html'
