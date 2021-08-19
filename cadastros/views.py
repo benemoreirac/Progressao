@@ -32,7 +32,7 @@ class AtividadeCreate(CreateView):
     model = Atividade
     fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-atividade')
 
 
 ###### UPDATE ######
@@ -73,12 +73,12 @@ class ClassesUpdate(UpdateView):
 class CampoDelete(DeleteView):
     model = Campo
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-campo')
 
 class AtividadeDelete(DeleteView):
     model = Atividade
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-atividade')
 
 class StatusDelete(DeleteView):
     model = Status
@@ -105,3 +105,15 @@ class CampoList(ListView):
 class AtividadeList(ListView):
     model = Atividade
     template_name = 'cadastros/listas/atividade.html'
+
+class StatusList(ListView):
+    model = Status
+    template_name = 'cadastros/listas/status.html'
+
+class CampusList(ListView):
+    model = Campus
+    template_name = 'cadastros/listas/campus.html'
+
+class ClasseList(ListView):
+    model = Classe
+    template_name = 'cadastros/listas/classes.html'

@@ -17,12 +17,41 @@
               <button id="btn-mobile" aria-label="Abrir Menu" aria-haspopup="true" aria-controls="menu" aria-expanded="false">Menu
                 <span id="hamburguer"></span>
               </button>
-
               <ul id="menu" role="menu">
                   <li><a href="{% url 'home' %}">Início</a></li>
+                  <li>
+                    <a href="#">Cadastros</a>
+                    <ul>
+                      <li>
+                        <a href="{% url 'cadastrar-campo' %}">
+                          <i>Campo</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cadastrar-atividade' %}">
+                          <i>Atividades</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cadastrar-status' %}">
+                          <i>Status</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cadastrar-classe' %}">
+                          <i>Classes</i>
+                        </a>  
+                      </li>
+                      <li>
+                        <a href="{% url 'cadastrar-campus' %}">
+                          <i>Campus</i>
+                        </a>  
+                      </li>
+                    </ul>                                      
+                  </li>
+                  <li><a href="#">Contato</a></li>
                   <li><a href="{% url 'sobre' %}">Sobre</a></li>
-                  <li><a href="/">Projetos</a></li>
-                  <li><a href="/">Contato</a></li>
+
               </ul>
           </nav>
         {% endblock %}

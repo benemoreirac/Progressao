@@ -25,6 +25,9 @@ urlpatterns = [
     path('excluir/campus/<int:pk>/', CampusDelete.as_view(), name='excluir-campus'),
 
     path('listar/campos/', CampoList.as_view(), name='listar-campo'),
-    path('listar/atividades/', CampoList.as_view(), name='listar-atividades'),
+    path('listar/atividade/', AtividadeList.as_view(), name='listar-atividade'),
+    path('listar/status/', AtividadeList.as_view(), name='listar-status'),
+    path('listar/classe/', AtividadeList.as_view(), name='listar-classe'),
+    path('listar/campus/', AtividadeList.as_view(), name='listar-campus'),
 
 ]
