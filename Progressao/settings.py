@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
     'cadastros.apps.CadastrosConfig',
+    'usuarios.apps.UsuariosConfig',
     'crispy_forms',
 ]
 
@@ -128,3 +129,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'static')
 ]
+
+#COnfigurações  de Autenticação 
+LOGIN_REDIRECT_URL='home'
+LOGOUT_REDIRECT_URL='login'
+LOGIN_URL = 'login'
