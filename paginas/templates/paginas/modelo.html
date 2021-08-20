@@ -51,6 +51,25 @@
                   </li>
                   <li><a href="#">Contato</a></li>
                   <li><a href="{% url 'sobre' %}">Sobre</a></li>
+                  <li><a href="{% url 'home' %}">Usuário</a>
+                    <ul>
+                      <li>
+                        <a href="{% url 'cadastrar-campo' %}">
+                          <i>Meus Dados</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'cadastrar-atividade' %}">
+                          <i>Alterar Senha</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'logout' %}">
+                          <i>Sair</i>
+                        </a>
+                      </li>
+                    </ul>   
+                  </li>
 
               </ul>
           </nav>
