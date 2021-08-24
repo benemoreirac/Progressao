@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from braces.views import GroupRequiredMixin
+
 
 # Create your views here.
 class StatusCreate(LoginRequiredMixin, CreateView):
@@ -27,8 +29,9 @@ class ClassesCreate(LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
 
-class CampoCreate(LoginRequiredMixin, CreateView):
+class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
+    group_required = u"Administrador"
     model = Campo
     fields = ['nome','descricao']
     template_name ='cadastros/form.html'
@@ -44,8 +47,9 @@ class AtividadeCreate(LoginRequiredMixin, CreateView):
 
 ###### UPDATE ######
 
-class CampoUpdate(LoginRequiredMixin, UpdateView):
+class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
+    group_required = u"Administrador"
     model = Campo
     fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
@@ -82,8 +86,9 @@ class ClassesUpdate(LoginRequiredMixin, UpdateView):
 
 ###### DELETE ######
 
-class CampoDelete(LoginRequiredMixin, DeleteView):
+class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
+    group_required = u"Administrador"
     model = Campo
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar-campo')
