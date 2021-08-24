@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Campo, Atividade, Status, Classe, Campus
+from .models import Campo, Atividade, Status, Classe, Campus, Progressao
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView 
 
@@ -44,6 +44,12 @@ class AtividadeCreate(LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-atividade')
 
+class ProgressaoCreate(CreateView):
+    model = Progressao
+    fields = ['classe', 'data_inicial', 'data_final', 'observacao']
+    template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar-progressao')
+
 
 ###### UPDATE ######
 
@@ -83,6 +89,11 @@ class ClassesUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
 
+class ProgressaoUpdate(LoginRequiredMixin, UpdateView):
+    model = Progressao
+    fields = ['classe', 'data_inicial', 'data_final', 'observacao']
+    template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar-progressao')
 
 ###### DELETE ######
 
@@ -117,6 +128,12 @@ class ClassesDelete(LoginRequiredMixin, DeleteView):
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('home')
 
+class ProgressaoDelete(LoginRequiredMixin, DeleteView):
+    model = Progressao
+    fields = ['classe', 'data_inicial', 'data_final', 'observacao']
+    template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar-progressao')
+
 
 ###### LIST ######
 
@@ -144,3 +161,7 @@ class ClasseList(LoginRequiredMixin, ListView):
     model = Classe
     template_name = 'cadastros/listas/classes.html'
     login_url = reverse_lazy('login')
+
+class ProgressaoList(LoginRequiredMixin, ListView):
+    model = Progressao
+    template_name = 'cadastros/listas/progressao.html'

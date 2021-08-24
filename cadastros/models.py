@@ -1,6 +1,17 @@
 from django.db import models
 
 # Create your models here.
+
+class Progressao(models.Model):
+    data_inicial = models.DateField()
+    data_final = models.DateField()
+    observacao = models.CharField(max_length=255, verbose_name="observação")
+    servidor = models.ForeignKey(User, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "{} -> {} | {} a {}".format(self.servidor, self.classe, self.data_inicial, self.data_final)
+
+
 class Campo(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=150, verbose_name="Descrição")
