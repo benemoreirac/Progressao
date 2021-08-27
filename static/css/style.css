@@ -12,12 +12,22 @@ body{
     flex-direction: column;
 }
 
+#titulo-pagina{
+    text-align: center;
+    margin: revert;
+}
+
+#btn-add-cadastros{
+    
+}
+
 a{
     color: #fff;
     text-decoration: none;
     transition: 0.3s;
     padding: .5rem;
 }
+
 a:hover {
     opacity: 0.7;
 }
@@ -40,7 +50,7 @@ nav {
 main {
     background-size: cover;
     height: 92vh;
-  }
+}
 
 #nav-list {
     list-style: none;

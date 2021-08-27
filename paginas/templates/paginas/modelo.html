@@ -8,8 +8,12 @@
   {% endblock %}
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
 </head>
   <body>
+
       <header>
         {% block menu %}
           <nav id="nav-list">
@@ -24,31 +28,14 @@
                   <li>
                     <a href="#">Cadastros</a>
                     <ul>
-                      <li>
-                        <a href="{% url 'cadastrar-campo' %}">
-                          <i>Campo</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'cadastrar-atividade' %}">
-                          <i>Atividades</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'cadastrar-status' %}">
-                          <i>Status</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'cadastrar-classe' %}">
-                          <i>Classes</i>
-                        </a>  
-                      </li>
-                      <li>
-                        <a href="{% url 'cadastrar-campus' %}">
-                          <i>Campus</i>
-                        </a>  
-                      </li>
+                      <li><a href="{% url 'listar-campo' %}"><i>Campo</i></a></li>
+                      <li><a href="{% url 'listar-atividade' %}"><i>Atividades</i></a></li>
+                      <li><a href="{% url 'listar-status' %}"><i>Status</i></a></li>
+                      <li><a href="{% url 'listar-classe' %}"><i>Classes</i></a></li>
+                      <li><a href="{% url 'listar-campus' %}"><i>Campus</i></a></li>
+                      <li><a href="{% url 'listar-situacao' %}">Situações</a></li>
+                      <li><a href="{% url 'listar-progressao' %}">Progressões</a></li>
+                      <li><a href="{% url 'listar-comprovante' %}">Comprovantes</a></li>
                     </ul>                                      
                   </li>
                   {% endif %}
@@ -58,32 +45,14 @@
                   
                   {% if request.user.is_authenticated %}
                   <li><a href="{% url 'home' %}">{{request.user}}</a>
-                    <ul>
-                      <li>
-                        <a href="{% url 'cadastrar-campo' %}">
-                          <i>Meus Dados</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'cadastrar-atividade' %}">
-                          <i>Alterar Senha</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'logout' %}">
-                          <i>Sair</i>
-                        </a>
-                      </li>
+                    <ul><li><a href="{% url 'cadastrar-campo' %}"><i>Meus Dados</i></a></li>
+                      <li><a href="{% url 'cadastrar-atividade' %}"><i>Alterar Senha</i></a></li>
+                      <li><a href="{% url 'logout' %}"><i>Sair</i></a></li>
                     </ul>   
                   </li>
                   {% else %}
-                  <li>
-                    <a href="{% url 'login' %}">
-                      <i>Login</i>
-                    </a>
-                  </li>
+                  <li><a href="{% url 'login' %}"><i>Login</i></a></li>
                   {% endif %}
-
               </ul>
           </nav>
         {% endblock %}
@@ -101,6 +70,11 @@
       <footer id="rodape">
         <a href="/">by Ebenézer Cavalcante</a>      
       </footer>
+  
+      
+      <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
   </body>
 </html>
