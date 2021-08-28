@@ -44,11 +44,11 @@ class Campus(models.Model):
         return "{} ({})".format(self.cidade, self.endereco, self.telefone)
 
 class Progressao(models.Model):
+    classe = models.ForeignKey(Classe, on_delete=models.PROTECT, verbose_name="classe pretendida")
     data_inicial = models.DateField()
     data_final = models.DateField()
     observacao = models.CharField(max_length=255, verbose_name="observação")
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
-
 
     def __str__(self):
         return "{} -> {} | {} a {}".format(self.servidor, self.classe, self.data_inicial, self.data_final)

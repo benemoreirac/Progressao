@@ -31,12 +31,12 @@ class StatusCreate(LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
 
-class ClassesCreate(LoginRequiredMixin, CreateView):
+class ClasseCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Classe
-    fields = ['nome', 'nível', 'descricao']
+    fields = ['nome', 'nivel', 'descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-classe')
 
 class CampusCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
@@ -45,11 +45,17 @@ class CampusCreate(LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
 
-class ProgressaoCreate(CreateView):
+class ProgressaoCreate(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('login')
     model = Progressao
     fields = ['classe', 'data_inicial', 'data_final', 'observacao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-progressao')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
 
 class SituacaoCreate(CreateView):
     model = Situacao
@@ -94,12 +100,12 @@ class StatusUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
 
-class ClassesUpdate(LoginRequiredMixin, UpdateView):
+class ClasseUpdate(UpdateView):
     login_url = reverse_lazy('login')
     model = Classe
-    fields = ['nome', 'nível', 'descricao']
+    fields = ['nome', 'nivel', 'descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-classe')
 
 class CampusUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
@@ -160,11 +166,11 @@ class StatusDelete(LoginRequiredMixin, DeleteView):
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('home')
 
-class ClassesDelete(LoginRequiredMixin, DeleteView):
+class ClasseDelete(DeleteView):
     login_url = reverse_lazy('login')
     model = Classe
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('listar-classe')
 
 class CampusDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
@@ -211,15 +217,13 @@ class StatusList(LoginRequiredMixin, ListView):
     template_name = 'cadastros/listas/status.html'
     login_url = reverse_lazy('login')
 
-class ClasseList(LoginRequiredMixin, ListView):
+class ClasseList(ListView):
     model = Classe
-    template_name = 'cadastros/listas/classes.html'
-    login_url = reverse_lazy('login')
+    template_name = 'cadastros/listas/classe.html'
 
 class CampusList(LoginRequiredMixin, ListView):
     model = Campus
     template_name = 'cadastros/listas/campus.html'
-    login_url = reverse_lazy('login')
 
 class ProgressaoList(LoginRequiredMixin, ListView):
     model = Progressao
