@@ -13,15 +13,15 @@
                 <th>Classe</th>
                 <th>Data inicial</th>
                 <th>Data final</th>
-                <th>Servidor</th>
+                <th>Usuário</th>
                 <th>Opções</th>
             </tr>
-            {% for campo in object_list %}
+            {% for object in object_list %}
             <tr>
                 <td>{{ object.classe }}</td>
                 <td>{{ object.data_inicial }}</td>
                 <td>{{ object.data_final }}</td>
-                <td>{{ object.servidor }}</td>
+                <td>{{ object.usuario }}</td>
                 <td>
                     <a href="{% url 'editar-progressao' object.pk %}" class="btn btn-warning btn-sm" title="Editar">
                         <i class="fa fa-pencil" aria-hidden="true"></i>

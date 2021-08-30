@@ -6,6 +6,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 
@@ -115,10 +117,15 @@ class CampusUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('home')
 
 class ProgressaoUpdate(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('login')
     model = Progressao
     fields = ['classe', 'data_inicial', 'data_final', 'observacao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-progressao')
+
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Progressao, pk=self.kwargs['pk'], usuario = self.request.user)
+        return self.object
 
 class SituacaoUpdate(UpdateView):
     model = Situacao
@@ -184,6 +191,10 @@ class ProgressaoDelete(LoginRequiredMixin, DeleteView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-progressao')
 
+    def get_object(self, queryset=None):
+        self.object = get_object_or_404(Progressao, pk=self.kwargs['pk'], usuario = self.request.user)
+        return self.object
+
 class SituacaoDelete(DeleteView):
     model = Situacao
     template_name = 'cadastros/form-excluir.html'
@@ -226,8 +237,13 @@ class CampusList(LoginRequiredMixin, ListView):
     template_name = 'cadastros/listas/campus.html'
 
 class ProgressaoList(LoginRequiredMixin, ListView):
+    login_url=reverse_lazy('login')
     model = Progressao
     template_name = 'cadastros/listas/progressao.html'
+
+    def get_queryset(self):
+        self.object_list = Progressao.objects.filter(usuario = self.request.user)
+        return self.object_list
 
 class SituacaoList(ListView):
     model = Situacao

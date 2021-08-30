@@ -51,7 +51,7 @@ class Progressao(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
-        return "{} -> {} | {} a {}".format(self.servidor, self.classe, self.data_inicial, self.data_final)
+        return "{} -> {} | {} a {}".format(self.usuario, self.classe, self.data_inicial, self.data_final)
 
 class Comprovante(models.Model):
     progressao = models.ForeignKey(
@@ -61,10 +61,10 @@ class Comprovante(models.Model):
     data = models.DateField()
     data_final = models.DateField(
         null=True, blank=True, help_text="Informar apenas se o comprovante for relativo a um período.")
-    
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
-        return "[{}] {} - {}/{}".format(self.pk, self.servidor, self.progressao, self.atividade)
+        return "[{}] {} - {}/{}".format(self.pk, self.usuario, self.progressao, self.atividade)
 
 class Validacao(models.Model):
     comprovante = models.ForeignKey(Comprovante, on_delete=models.PROTECT)
@@ -74,7 +74,7 @@ class Validacao(models.Model):
     justificativa = models.TextField(max_length=255)
 
     def __str__(self):
-        return "[{}] Pontuação: {}/{} por {}".format(self.comprovante.pk, self.quantidade, self.comprovante.quantidade, self.servidor)
+        return "[{}] Pontuação: {}/{} por {}".format(self.comprovante.pk, self.quantidade, self.comprovante.quantidade, self.usuario)
 
 
 class Situacao(models.Model):
