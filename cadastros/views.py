@@ -43,9 +43,15 @@ class ClasseCreate(LoginRequiredMixin, CreateView):
 class CampusCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Campus
-    fields = ['nome', 'endereco', 'telefone']
+    fields = ['cidade', 'endereco', 'telefone']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastro de Campus"
+        context['botao'] = "Cadastrar"
+        return context
 
 class ProgressaoCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
@@ -115,6 +121,12 @@ class CampusUpdate(LoginRequiredMixin, UpdateView):
     fields = ['nome', 'endereco', 'telefone']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Editar cadastro de Campus"
+        context['botao'] = "Salvar"
+        return context
 
 class ProgressaoUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
