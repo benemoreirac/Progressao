@@ -30,7 +30,7 @@ class PerfilUpdate(UpdateView):
     template_name = 'cadastros/form.html'
     model = Perfil
     fields = ['nome_completo','cpf','telefone']
-    success_url = 'index'
+    success_url = 'login'
 
     def get_object(self, queryset=None):
         self.object = get_object_or_404(Perfil, usuario=self.request.user)
