@@ -26,6 +26,17 @@ class AtividadeCreate(LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-atividade')
 
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastrar Atividades"
+        context['botao'] = "Salvar"
+        return context
+
 class StatusCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Status
@@ -73,10 +84,20 @@ class SituacaoCreate(CreateView):
 
 class ComprovanteCreate(CreateView):
     model = Comprovante
-    fields = ['progressao', 'atividade',
-              'quantidade', 'data', 'data_final', 'arquivo']
-    template_name = 'cadastros/form.html'
+    fields = ['progressao', 'atividade', 'quantidade', 'data', 'data_final', 'arquivo']
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-comprovante')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastrar Comprovantes"
+        context['botao'] = "Salvar"
+        return context
 
 class ValidacaoCreate(CreateView):
     model = Validacao
@@ -100,6 +121,17 @@ class AtividadeUpdate(LoginRequiredMixin, UpdateView):
     fields = ['numero', 'descricao', 'detalhes', 'campo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-atividade')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastrar Atividades"
+        context['botao'] = "Salvar"
+        return context
 
 class StatusUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
@@ -149,8 +181,19 @@ class ComprovanteUpdate(UpdateView):
     model = Comprovante
     fields = ['progressao', 'atividade',
               'quantidade', 'data', 'data_final', 'arquivo']
-    template_name = 'cadastros/form.html'
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-comprovante')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        url = super().form_valid(form)
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = "Cadastrar Comprovantes"
+        context['botao'] = "Salvar"
+        return context
 
 class ValidacaoUpdate(UpdateView):
     model = Validacao

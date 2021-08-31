@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cadastros.apps.CadastrosConfig',
     'usuarios.apps.UsuariosConfig',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 #Crisoy Forms
@@ -129,6 +130,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'static')
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL="/uploads/"
 
 #COnfigurações  de Autenticação 
 LOGIN_REDIRECT_URL='home'

@@ -54,13 +54,12 @@ class Progressao(models.Model):
         return "{} -> {} | {} a {}".format(self.usuario, self.classe, self.data_inicial, self.data_final)
 
 class Comprovante(models.Model):
-    progressao = models.ForeignKey(
-        Progressao, on_delete=models.PROTECT, verbose_name="progressão")
+    progressao = models.ForeignKey(Progressao, on_delete=models.PROTECT, verbose_name="progressão")
     atividade = models.ForeignKey(Atividade, on_delete=models.PROTECT)
     quantidade = models.DecimalField(decimal_places=2, max_digits=5)
     data = models.DateField()
-    data_final = models.DateField(
-        null=True, blank=True, help_text="Informar apenas se o comprovante for relativo a um período.")
+    data_final = models.DateField(null=True, blank=True, help_text="Informar apenas se o comprovante for relativo a um período.")
+    arquivo = models.FileField(upload_to="uploads/")
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
@@ -75,7 +74,6 @@ class Validacao(models.Model):
 
     def __str__(self):
         return "[{}] Pontuação: {}/{} por {}".format(self.comprovante.pk, self.quantidade, self.comprovante.quantidade, self.usuario)
-
 
 class Situacao(models.Model):
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
